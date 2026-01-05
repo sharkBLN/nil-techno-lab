@@ -7,16 +7,7 @@
   <meta name="description" content="minimal but brutal — rotating track lists + floating player + transmissions mock + artwork thumbnails." />
   <style>
     
-    body::before{
-      content:"";
-      position:fixed; inset:0;
-      pointer-events:none;
-      background:radial-gradient(ellipse at 20% 10%, rgba(220,80,255,.18), transparent 55%),
-                 radial-gradient(ellipse at 80% 80%, rgba(60,255,170,.14), transparent 60%),
-                 rgba(0,0,0,.55);
-      mix-blend-mode:normal;
-      z-index:-1;
-    }
+    
 
 :root{
       --bg:#07070b;
@@ -31,6 +22,8 @@
       --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
     }
     *{box-sizing:border-box} html,body{position:relative;height:100%}
+body{background-size:cover !important;background-position:center !important;background-attachment:fixed !important;background-repeat:no-repeat !important;}
+
     body{
       margin:0;
       font-family:var(--mono);
