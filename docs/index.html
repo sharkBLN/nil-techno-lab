@@ -290,8 +290,7 @@ background-color: var(--bg);
               </div>
               <div class="m">plays in floating player</div>
             </div>
-            <div class="mini">Rotates the visible title/artwork only. Playback is isolated, so your listener never gets interrupted.</div>
-            <div class="btnrow">
+<div class="btnrow">
               <button class="btn green" id="spotlightPlay">play</button>
               <button class="btn" id="spotlightOpen">open</button>
               <button class="btn primary" id="spotlightNext">next</button>
@@ -315,8 +314,7 @@ background-color: var(--bg);
               </div>
               <div class="m">source: popular-tracks</div>
             </div>
-            <div class="mini">Same rules: rotate the “window” but keep the actual player stable.</div>
-            <div class="btnrow">
+<div class="btnrow">
               <button class="btn green" id="popularPlay">play</button>
               <button class="btn" id="popularOpen">open</button>
               <button class="btn primary" id="popularNext">next</button>
@@ -326,9 +324,7 @@ background-color: var(--bg);
             </div>
           </div>
 
-          <div class="note" style="margin-top:10px;">
-            Artwork is loaded via SoundCloud oEmbed on deploy. Local file previews may show placeholders depending on browser.
-          </div>
+          
         </div>
 
         <div class="track-frame">
@@ -337,9 +333,7 @@ background-color: var(--bg);
             <div class="track-meta">with artwork</div>
           </div>
           <div class="index" id="trackIndex"></div>
-          <div class="note" style="margin-top:10px;">
-            Performance rule: only <b>one</b> SoundCloud iframe exists (the floating player). Everything else is lightweight + images.
-          </div>
+          
         </div>
       </div>
 
@@ -379,9 +373,7 @@ background-color: var(--bg);
       </div>
 
       <div class="divider"></div>
-      <div class="note">
-        Playback rule: rotations never touch the player. Only explicit user action changes the player track.
-      </div>
+      
     </section>
   </main>
 
