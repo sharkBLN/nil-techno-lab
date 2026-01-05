@@ -30,8 +30,7 @@ body{background-size:cover !important;background-position:center !important;back
   background-image:
     radial-gradient(1200px 900px at 70% 15%, rgba(220,80,255,0.20), transparent 60%),
     radial-gradient(900px 700px at 20% 70%, rgba(60,255,170,0.12), transparent 65%);
-
-        var(--bg);
+      background-color: var(--bg);
       color:var(--text);
       letter-spacing:.2px;
     }
@@ -673,26 +672,19 @@ body{background-size:cover !important;background-position:center !important;back
 </script>
 
 <script>
-/* ---- BG from /bg folder: bg-01.webp ... bg-12.webp (2-hour slots) ---- */
 (function(){
   const hour = new Date().getHours();
   const idx = Math.floor(hour / 2) + 1; // 1..12
   const pad = String(idx).padStart(2, "0");
   const url = `./bg/bg-${pad}.webp`;
-
-  // Put image UNDER the existing gradients/panels by setting body backgroundImage
-  // Keep any existing background-color/gradient styles intact by overriding backgroundImage only.
   document.body.style.backgroundImage = `url("${url}"), radial-gradient(1200px 900px at 70% 15%, rgba(220,80,255,0.20), transparent 60%), radial-gradient(900px 700px at 20% 70%, rgba(60,255,170,0.12), transparent 65%)`;
   document.body.style.backgroundSize = "cover";
   document.body.style.backgroundPosition = "center";
   document.body.style.backgroundAttachment = "fixed";
-
-  // Optional: show which bg is active if an element exists
   const pill = document.getElementById("bgpill");
   if (pill) pill.textContent = `bg: ${pad}/12`;
 })();
 </script>
 
-<script>document.documentElement.style.background='#ffd400';document.body.style.background='#ffd400';</script>
 </body>
 </html>
