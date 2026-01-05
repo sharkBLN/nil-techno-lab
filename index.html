@@ -6,7 +6,19 @@
   <title>nil@techno-lab — minimal but brutal (v6)</title>
   <meta name="description" content="minimal but brutal — rotating track lists + floating player + transmissions mock + artwork thumbnails." />
   <style>
-    :root{
+    
+    body::before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      background:radial-gradient(ellipse at 20% 10%, rgba(220,80,255,.18), transparent 55%),
+                 radial-gradient(ellipse at 80% 80%, rgba(60,255,170,.14), transparent 60%),
+                 rgba(0,0,0,.55);
+      mix-blend-mode:normal;
+      z-index:-1;
+    }
+
+:root{
       --bg:#07070b;
       --panel:rgba(14,8,20,.72);
       --text:rgba(245,245,255,.92);
@@ -18,7 +30,7 @@
       --radius:14px;
       --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
     }
-    *{box-sizing:border-box} html,body{height:100%}
+    *{box-sizing:border-box} html,body{position:relative;height:100%}
     body{
       margin:0;
       font-family:var(--mono);
@@ -665,5 +677,27 @@
   }
   loadTx();
 </script>
+
+<script>
+/* ---- BG from /bg folder: bg-01.webp ... bg-12.webp (2-hour slots) ---- */
+(function(){
+  const hour = new Date().getHours();
+  const idx = Math.floor(hour / 2) + 1; // 1..12
+  const pad = String(idx).padStart(2, "0");
+  const url = `./bg/bg-${pad}.webp`;
+
+  // Put image UNDER the existing gradients/panels by setting body backgroundImage
+  // Keep any existing background-color/gradient styles intact by overriding backgroundImage only.
+  document.body.style.backgroundImage = `url("${url}")`;
+  document.body.style.backgroundSize = "cover";
+  document.body.style.backgroundPosition = "center";
+  document.body.style.backgroundAttachment = "fixed";
+
+  // Optional: show which bg is active if an element exists
+  const pill = document.getElementById("bgpill");
+  if (pill) pill.textContent = `bg: ${pad}/12`;
+})();
+</script>
+
 </body>
 </html>
