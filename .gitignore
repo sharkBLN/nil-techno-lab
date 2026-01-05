@@ -2,3 +2,6 @@
 __MACOSX/
 ._*
 Thumbs.db
+
+# Local Netlify folder
+.netlify
