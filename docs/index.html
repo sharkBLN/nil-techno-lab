@@ -146,12 +146,13 @@ background-color: var(--bg);
     }
     .now-left{display:flex;align-items:center;gap:10px;min-width:0}
     .thumb{
-      width:44px;height:44px;border-radius:10px;flex:0 0 auto;
+      width:140px;height:44px;border-radius:12px;flex:0 0 auto;
       border:1px solid rgba(245,245,255,.14);
       background:linear-gradient(135deg, rgba(220,80,255,.18), rgba(60,255,170,.10));
       overflow:hidden;
       box-shadow:0 0 0 1px rgba(220,80,255,.10) inset;
     }
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block;opacity:1;filter:saturate(1.05) contrast(1.02)}
     .thumb img{width:100%;height:100%;object-fit:cover;display:block}
     .rotator .now .t{font-size:13px;color:rgba(245,245,255,.90);min-width:0}
     .rotator .now .t b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:520px}
@@ -181,7 +182,7 @@ background-color: var(--bg);
     .tx-tags a{font-size:11px;padding:4px 8px;border-radius:999px;border:1px solid rgba(220,80,255,.22);color:rgba(245,245,255,.76)}
     .tx-tags a:hover{border-color:rgba(220,80,255,.45);text-decoration:none}
 
-    /* Floating player */
+    
     .player{
       position:fixed;right:16px;bottom:16px;z-index:50;
       width:min(420px, calc(100vw - 32px));
@@ -384,7 +385,7 @@ background-color: var(--bg);
     </section>
   </main>
 
-  <!-- Floating Player -->
+  
   <aside class="player hidden" id="player">
     <div class="player-head">
       <div class="player-title">
@@ -451,8 +452,6 @@ background-color: var(--bg);
     show_reposts:"false",
     show_teaser:"true"
   };
-
-  // Artwork cache via SoundCloud oEmbed
   const artCache = new Map();
   async function fetchArt(url){
     if(artCache.has(url)) return artCache.get(url);
@@ -477,8 +476,9 @@ background-color: var(--bg);
         imgEl.src = src;
         imgEl.style.opacity = "1";
       }else{
+        // keep placeholder banner visible (don’t “dot out”)
         imgEl.removeAttribute("src");
-        imgEl.style.opacity = "0";
+        imgEl.style.opacity = "0.0001";
       }
     });
   }
@@ -501,8 +501,6 @@ background-color: var(--bg);
   document.getElementById("freqValue").textContent = `${BPM}bpm`;
   document.getElementById("spotlightEvery").textContent = `${Math.round(SPOTLIGHT_ROTATION_INTERVAL_MS/1000)}s`;
   document.getElementById("popularEvery").textContent = `${Math.round(POPULAR_ROTATION_INTERVAL_MS/1000)}s`;
-
-  // Player
   const player = document.getElementById("player");
   const playerEmbed = document.getElementById("playerEmbed");
   const playerTitle = document.getElementById("playerTitle");
@@ -527,8 +525,6 @@ background-color: var(--bg);
     hidePlayer();
   });
   document.getElementById("playerMin").addEventListener("click",()=>hidePlayer());
-
-  // Spotlight rotator
   let spotlightPool = SPOTLIGHT.slice();
   let spotlightIndex = 0;
   let spotlightTimer = null;
@@ -563,8 +559,6 @@ background-color: var(--bg);
     spotlightPaused = !spotlightPaused;
     e.target.textContent = spotlightPaused ? "resume" : "pause";
   });
-
-  // Popular rotator
   let popularPool = POPULAR.slice();
   let popularIndex = 0;
   let popularTimer = null;
@@ -599,8 +593,6 @@ background-color: var(--bg);
     popularPaused = !popularPaused;
     e.target.textContent = popularPaused ? "resume" : "pause";
   });
-
-  // Index with artwork
   const indexRoot = document.getElementById("trackIndex");
   function rowHTML(t, i){
     const safeTag = (t.tag||"TRACK").toUpperCase();
@@ -632,8 +624,6 @@ background-color: var(--bg);
     if(action==="open" && url) window.open(url,"_blank","noopener");
     if(action==="play" && url) loadPlayer({title,url});
   });
-
-  // Tabs
   const tabs = Array.from(document.querySelectorAll('.nav button[role="tab"]'));
   const panels = Array.from(document.querySelectorAll('.section[role="tabpanel"]'));
   function setTab(name){
@@ -641,8 +631,6 @@ background-color: var(--bg);
     panels.forEach(p=>p.classList.toggle("active", p.id===name));
   }
   tabs.forEach(t=>t.addEventListener("click",()=>setTab(t.dataset.tab)));
-
-  // Transmissions
   function renderTx(items){
     const root = document.getElementById("txList");
     root.innerHTML = (items||[]).map(tx=>{
