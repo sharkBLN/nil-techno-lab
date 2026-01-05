@@ -682,7 +682,7 @@ body{background-size:cover !important;background-position:center !important;back
 
   // Put image UNDER the existing gradients/panels by setting body backgroundImage
   // Keep any existing background-color/gradient styles intact by overriding backgroundImage only.
-  document.body.style.backgroundImage = `url("${url}")`;
+  document.body.style.backgroundImage = `url("${url}"), radial-gradient(1200px 900px at 70% 15%, rgba(220,80,255,0.20), transparent 60%), radial-gradient(900px 700px at 20% 70%, rgba(60,255,170,0.12), transparent 65%)`;
   document.body.style.backgroundSize = "cover";
   document.body.style.backgroundPosition = "center";
   document.body.style.backgroundAttachment = "fixed";
